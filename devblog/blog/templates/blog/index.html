@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Последние 10 объявлений</h2>
+{% if posts %}
+<ul class="list-unstyled">
+    {% for post in posts %}
+    <li class="media my-5 p-3 border">
+        {% url 'blog:detail' category_pk=post.category.pk pk=post.pk as url %}
+        <div class="media-body">
+          <h3><a href="{{ url }}{{ all }}">
+          {{ post.title }}</a></h3>
+          <div>{{ post.content }}</div>
+          <p class="text-right font-italic">{{ bb.created_time }}</p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

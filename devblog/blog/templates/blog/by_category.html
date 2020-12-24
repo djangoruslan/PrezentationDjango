@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% block title %}{{ category }}{% endblock %}
+
+{% block content %}
+<h2 class="mb-2">{{ category }}</h2>
+
+{% if posts %}
+<ul class="list-unstyled">
+    {% for post in posts %}
+    <li class="media my-5 p-3 border">
+        {% url 'blog:detail' category_pk=post.pk pk=post.pk as url %}
+        <div class="media-body">
+          <h3><a href="{{ url }}{{ all }}">
+          {{ post.title }}</a></h3>
+          <div>{{ post.content }}</div>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
+{% bootstrap_pagination page url=keyword %}
+{% endif %}
+{% endblock %}
