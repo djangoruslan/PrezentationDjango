@@ -38,7 +38,7 @@ class Post(models.Model):
     slug = models.SlugField(unique=True)
     content = BBCodeTextField(null=True, blank=True, verbose_name='Текст поста')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
-    img = models.ImageField(upload_to='images/', blank=True, verbose_name='Фотография')
+    img = models.ImageField(upload_to='images', blank=True, verbose_name='Фотография')
     is_active = models.BooleanField(default=True, verbose_name='Выводить на сайте?')
     views = models.PositiveIntegerField(default=0)
 

@@ -1,4 +1,5 @@
 from .models import PostCategory
+from .forms import SearchForm
 
 
 def blog_context_processor(request):
@@ -11,6 +12,10 @@ def blog_context_processor(request):
         if keyword:
             context['keyword'] = '?keyword=' + keyword
             context['all'] = context['keyword']
+    else:
+        keyword = ''
+    form = SearchForm(initial={'keyword': keyword})
+    context['form'] = form
     if 'page' in request.GET:
         page = request.GET['page']
         if page != '1':

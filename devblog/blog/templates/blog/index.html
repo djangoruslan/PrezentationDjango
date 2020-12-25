@@ -5,13 +5,20 @@
 {% if posts %}
 <ul class="list-unstyled">
     {% for post in posts %}
-    <li class="media my-5 p-3 border">
+    <li class="card mb-4">
         {% url 'blog:detail' category_pk=post.category.pk pk=post.pk as url %}
-        <div class="media-body">
-          <h3><a href="{{ url }}{{ all }}">
-          {{ post.title }}</a></h3>
-          <div>{{ post.content }}</div>
-          <p class="text-right font-italic">{{ bb.created_time }}</p>
+        {% if post.image %}
+        <img class="card-img-top" href="{{ url }}{{ all }}" src="{{ post.img.url }}" alt="Card image cap">
+        {% else %}
+        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+        {% endif %}
+        <div class="card-body">
+            <h2 class="card-title">{{ post.title }}</h2>
+            <p class="card-text">{{ post.content }}</p>
+            <a href="{{ url }}{{ all }}" class="btn btn-primary">Read More &rarr;</a>
+        </div>
+        <div class="card-footer text-muted">
+            Пост создан {{ post.created_time }} пользователем {{ post.author }}
         </div>
     </li>
     {% endfor %}

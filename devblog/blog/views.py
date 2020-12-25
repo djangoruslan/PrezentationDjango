@@ -53,7 +53,7 @@ def index(request):
     else:
         keyword = ''
     form = SearchForm(initial={'keyword': keyword})
-    context = {'posts': posts, 'form': form}
+    context = {'posts': posts}
     return render(request, 'blog/index.html', context)
 
 
